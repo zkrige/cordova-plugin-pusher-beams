@@ -1,7 +1,7 @@
 /*global cordova, module*/
 
 module.exports = {
-    registerUserId: function (userId, authToken, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "PusherBeams", "registerUserId", [userId, authToken]);
+    registerUserId: function (tokenUrl, userId, authToken, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "PusherBeams", "registerUserId", [tokenUrl, userId, authToken]);
     }
 };

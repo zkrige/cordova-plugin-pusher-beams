@@ -9,11 +9,12 @@
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
-        NSString* userId = [[command argumentAtIndex:0] stringValue];
-        NSString* authToken= [[command argumentAtIndex:1] stringValue];
+        NSString *tokenUrl = [[command argumentAtIndex:0] stringValue];
+        NSString* userId = [[command argumentAtIndex:1] stringValue];
+        NSString* authToken= [[command argumentAtIndex:2] stringValue];
         NSString* bearerToken = [NSString stringWithFormat:@"Bearer %@", authToken];
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:@"http://pager.testing.medicom.care/api/v1/user/beams-token" getAuthData:^AuthData * _Nonnull{
+        BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:tokenUrl getAuthData:^AuthData * _Nonnull{
             NSDictionary *headers = @{
                 @"Authorization" : bearerToken
             };

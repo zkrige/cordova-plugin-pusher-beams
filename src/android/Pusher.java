@@ -19,8 +19,9 @@ public class Pusher extends CordovaPlugin {
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("registerUserId")) {
-            String userId = data.getString(0);
-            String authToken = data.getString(1);
+            String tokenUrl = data.getString(0);
+            String userId = data.getString(1);
+            String authToken = data.getString(2);
             registerUserId(userId, authToken);
             callbackContext.success("");
 
@@ -33,9 +34,8 @@ public class Pusher extends CordovaPlugin {
         }
     }
 
-    private void registerUserId(String userId, String authToken) {
-        BeamsTokenProvider tokenProvider = new BeamsTokenProvider(
-                "http://pager.testing.medicom.care/api/v1/user/beams-token",
+    private void registerUserId(String tokenUrl, String userId, String authToken) {
+        BeamsTokenProvider tokenProvider = new BeamsTokenProvider(tokenUrl,
                 new AuthDataGetter() {
                     @Override
                     public AuthData getAuthData() {
