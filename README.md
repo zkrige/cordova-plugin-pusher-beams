@@ -21,7 +21,7 @@ Edit `www/js/index.js` and add the following code when you have a userid and aut
 ```js
     this.Storage.get('access_token').then(token => {
       this.Storage.get('userid').then(id => {
-        PusherBeams.registerUserId(id, token);
+        PusherBeams.registerUserId('https://your-auth-url.com', id, token);
       });
     });
 ```
