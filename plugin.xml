@@ -3,7 +3,7 @@
         id="za.co.apextechnology.pusher.beams"
         version="0.7.0">
 
-  <name>Pusher</name>
+  <name>PusherBeams</name>
 
   <engines>
     <engine name="cordova" version=">=6.0.0"/>

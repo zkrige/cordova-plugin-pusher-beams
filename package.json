@@ -1,13 +1,12 @@
 {
   "name": "cordova-plugin-pusher-beams",
   "version": "1.0.0",
-  "description": "Pusher beams integartion",
+  "description": "Pusher beams integration",
   "cordova": {
     "id": "cordova-plugin-pusher-beams",
     "platforms": [
       "android",
-      "ios",
-      "wp7"
+      "ios"
     ]
   },
   "repository": {

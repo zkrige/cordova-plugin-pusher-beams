@@ -2,6 +2,6 @@
 
 module.exports = {
     registerUserId: function (userId, authToken, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "Pusher", "registerUserId", [userId, authToken]);
+        cordova.exec(successCallback, errorCallback, "PusherBeams", "registerUserId", [userId, authToken]);
     }
 };
