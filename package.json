@@ -1,0 +1,30 @@
+{
+  "name": "cordova-plugin-pusher-beams",
+  "version": "1.0.0",
+  "description": "Pusher beams integartion",
+  "cordova": {
+    "id": "cordova-plugin-pusher-beams",
+    "platforms": [
+      "android",
+      "ios",
+      "wp7"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkrige/cordova-plugin-pusher-beams.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "hello",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Zayin Krige",
+  "license": "Apache-2",
+  "bugs": {
+    "url": "https://github.com/zkrige/cordova-plugin-pusher-beams/issues"
+  },
+  "homepage": "https://github.com/zkrige/cordova-plugin-pusher-beams#readme"
+}

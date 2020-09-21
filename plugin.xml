@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="za.co.apextechnology.pusher.beams"
+        version="0.7.0">
+
+  <name>Pusher</name>
+
+  <engines>
+    <engine name="cordova" version=">=6.0.0"/>
+  </engines>
+
+  <asset src="www/pusher.js" target="js/pusher.js"/>
+
+  <js-module src="www/pusher.js" name="pusher">
+    <clobbers target="pusher" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Pusher">
+        <param name="android-package" value="za.co.apextechnology.pusher.beams"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/Pusher.java" target-dir="src/za/co/apextechnology/pusher/beams/"/>
+  </platform>
+
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/widget">
+      <feature name="Pusher">
+        <param name="ios-package" value="APPusher" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/APPusher.h" target-dir="PusherPlugin"/>
+    <source-file src="src/ios/APPusher.m" target-dir="PusherPlugin"/>
+  </platform>
+
+
+</plugin>
