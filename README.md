@@ -8,7 +8,7 @@ You still need to do manual Pusher-Beams configuration and setup in your native 
 
 Create a new Cordova Project
 
-    $ cordova create hello com.example.helloapp Hello
+    $ cordova create beams com.example.beamsapp Beams
     
 Install the plugin
 
