@@ -16,7 +16,7 @@
         BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:@"http://pager.testing.medicom.care/api/v1/user/beams-token" getAuthData:^AuthData * _Nonnull{
             NSDictionary *headers = @{
                 @"Authorization" : bearerToken
-            }
+            };
             AuthData *toRet = [[AuthData alloc] initWithHeaders:headers queryParams:@{}];
             return toRet;
         }];
