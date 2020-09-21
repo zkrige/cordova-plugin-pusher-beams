@@ -1,11 +1,11 @@
-#import "CDVPusher.h"
+#import "APPusher.h"
 #import "AppDelegate.h"
 @import PushNotifications;
 
 #pragma mark -
-#pragma mark CDVPusher
+#pragma mark APPusher
 
-@implementation CDVPusher
+@implementation APPusher
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{

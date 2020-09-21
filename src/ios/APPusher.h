@@ -1,6 +1,6 @@
 #import <Cordova/CDVPlugin.h>
 
-@interface CDVPusher : CDVPlugin
+@interface APPusher : CDVPlugin
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command;
 @end
