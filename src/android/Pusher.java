@@ -1,8 +1,17 @@
 package za.co.apextechnology.pusher.beams;
 
+import com.pusher.pushnotifications.BeamsCallback;
+import com.pusher.pushnotifications.PushNotifications;
+import com.pusher.pushnotifications.PusherCallbackError;
+import com.pusher.pushnotifications.auth.AuthData;
+import com.pusher.pushnotifications.auth.AuthDataGetter;
+import com.pusher.pushnotifications.auth.BeamsTokenProvider;
+
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.util.HashMap;
 
 public class Pusher extends CordovaPlugin {
 
@@ -47,12 +56,10 @@ public class Pusher extends CordovaPlugin {
         PushNotifications.setUserId("userId", tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
             @Override
             public void onSuccess(Void... values) {
-                Log.i("PusherBeams", "Successfully authenticated with Pusher Beams");
             }
 
             @Override
             public void onFailure(PusherCallbackError error) {
-                Log.i("PusherBeams", "Pusher Beams authentication failed: " + error.getMessage());
             }
         });
     }
