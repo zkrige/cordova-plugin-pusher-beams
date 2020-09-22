@@ -1,6 +1,6 @@
 #import <Cordova/CDVPlugin.h>
 
-@interface APPusher : CDVPlugin
+@interface PusherBeams : CDVPlugin
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command;
 @end

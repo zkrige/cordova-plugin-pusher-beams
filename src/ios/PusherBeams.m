@@ -1,18 +1,18 @@
-#import "APPusher.h"
+#import "PusherBeams.h"
 @import PushNotifications;
 
 #pragma mark -
-#pragma mark APPusher
+#pragma mark PusherBeams
 
-@implementation APPusher
+@implementation PusherBeams
 
 - (void)registerUserId:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
-        NSString *tokenUrl = [[command argumentAtIndex:0] stringValue];
-        NSString *userId = [[command argumentAtIndex:1] stringValue];
-        NSString *authToken= [[command argumentAtIndex:2] stringValue];
+        NSString *tokenUrl = [command argumentAtIndex:0];
+        NSString *userId = [command argumentAtIndex:1];
+        NSString *authToken= [command argumentAtIndex:2];
         NSString *bearerToken = [NSString stringWithFormat:@"Bearer %@", authToken];
-        BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:tokenUrl getAuthData:^AuthData * _Nonnull{
+        BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:tokenUrl getAuthData:^AuthData *{
             NSDictionary *headers = @{
                 @"Authorization" : bearerToken
             };
