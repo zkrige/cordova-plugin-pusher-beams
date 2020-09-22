@@ -1,9 +1,7 @@
-var exec = require('cordova/exec');
+/*global cordova, module*/
 
-var PusherBeams = {
+module.exports = {
     registerUserId: function (tokenUrl, userId, authToken, successCallback, errorCallback) {
-        exec(successCallback, errorCallback, "PusherBeams", "registerUserId", [tokenUrl, userId, authToken]);
+        cordova.exec(successCallback, errorCallback, "PusherBeams", "registerUserId", [tokenUrl, userId, authToken]);
     }
 };
-
-module.exports = PusherBeams;
