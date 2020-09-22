@@ -19,7 +19,7 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="PusherBeams">
-        <param name="android-package" value="za.co.apextechnology.pusher.beams"/>
+        <param name="android-package" value="za.co.apextechnology.pusher.beams.Pusher"/>
       </feature>
     </config-file>
 

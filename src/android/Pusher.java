@@ -22,7 +22,7 @@ public class Pusher extends CordovaPlugin {
             String tokenUrl = data.getString(0);
             String userId = data.getString(1);
             String authToken = data.getString(2);
-            registerUserId(userId, authToken);
+            registerUserId(tokenUrl, userId, authToken);
             callbackContext.success("");
 
             return true;
@@ -36,20 +36,17 @@ public class Pusher extends CordovaPlugin {
 
     private void registerUserId(String tokenUrl, String userId, String authToken) {
         BeamsTokenProvider tokenProvider = new BeamsTokenProvider(tokenUrl,
-                new AuthDataGetter() {
-                    @Override
-                    public AuthData getAuthData() {
-                        // Headers and URL query params your auth endpoint needs to
-                        // request a Beams Token for a given user
-                        HashMap<String, String> headers = new HashMap<>();
-                        // for example:
-                        headers.put("Authorization", "Bearer " + authToken);
-                        HashMap<String, String> queryParams = new HashMap<>();
-                        return new AuthData(
-                                headers,
-                                queryParams
-                        );
-                    }
+                () -> {
+                    // Headers and URL query params your auth endpoint needs to
+                    // request a Beams Token for a given user
+                    HashMap<String, String> headers = new HashMap<>();
+                    // for example:
+                    headers.put("Authorization", "Bearer " + authToken);
+                    HashMap<String, String> queryParams = new HashMap<>();
+                    return new AuthData(
+                            headers,
+                            queryParams
+                    );
                 }
         );
 
