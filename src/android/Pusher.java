@@ -1,5 +1,7 @@
 package za.co.apextechnology.pusher.beams;
 
+import android.util.Log;
+
 import com.pusher.pushnotifications.BeamsCallback;
 import com.pusher.pushnotifications.PushNotifications;
 import com.pusher.pushnotifications.PusherCallbackError;
@@ -21,16 +23,21 @@ public class Pusher extends CordovaPlugin {
         if (action.equals("registerUserId")) {
             String tokenUrl = data.getString(0);
             String userId = data.getString(1);
+            if (userId == null) {
+                return true;
+            }
             String authToken = data.getString(2);
+            if (authToken.equals("null")) {
+                return true;
+            }
             registerUserId(tokenUrl, userId, authToken);
             callbackContext.success("");
-
             return true;
-
+        } else if (action.equalsIgnoreCase("clear")){
+            PushNotifications.clearAllState();
+            return true;
         } else {
-
             return false;
-
         }
     }
 
@@ -50,13 +57,15 @@ public class Pusher extends CordovaPlugin {
                 }
         );
 
-        PushNotifications.setUserId("userId", tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
+        PushNotifications.setUserId(userId, tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
             @Override
             public void onSuccess(Void... values) {
+                Log.v("", "success");
             }
 
             @Override
             public void onFailure(PusherCallbackError error) {
+                Log.v("","fail");
             }
         });
     }
