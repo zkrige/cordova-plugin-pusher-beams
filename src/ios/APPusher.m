@@ -1,5 +1,4 @@
 #import "APPusher.h"
-#import "AppDelegate.h"
 @import PushNotifications;
 
 #pragma mark -
@@ -13,7 +12,6 @@
         NSString* userId = [[command argumentAtIndex:1] stringValue];
         NSString* authToken= [[command argumentAtIndex:2] stringValue];
         NSString* bearerToken = [NSString stringWithFormat:@"Bearer %@", authToken];
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         BeamsTokenProvider *tokenProvider = [[BeamsTokenProvider alloc] initWithAuthURL:tokenUrl getAuthData:^AuthData * _Nonnull{
             NSDictionary *headers = @{
                 @"Authorization" : bearerToken
@@ -21,7 +19,7 @@
             AuthData *toRet = [[AuthData alloc] initWithHeaders:headers queryParams:@{}];
             return toRet;
         }];
-        [[appDelegate beamsClient] setUserId:userId tokenProvider:tokenProvider completion:^(NSError *error) {
+        [PushNotificationsStatic setUserId:userId tokenProvider:tokenProvider completion:^(NSError *error) {
             //user id has been set
         }];
     }];
