@@ -48,7 +48,8 @@
             </pods>
         </podspec>
 
-      
+         <framework src="PusherBeams" type="podspec" spec="~> 1.2.0" />
+
   </platform>
 
 
