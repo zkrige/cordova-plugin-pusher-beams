@@ -43,12 +43,12 @@
             <config>
                 <source url="https://cdn.cocoapods.org/"/>
             </config>
-            <pods use-frameworks="true">
+            <pods use-frameworks="false">
                 <pod name="PushNotifications" spec="~> 1.2.0" />
             </pods>
         </podspec>
 
-        <framework src="PushNotifications" type="podspec" spec="~> 1.2.0" />
+      
   </platform>
 
 
