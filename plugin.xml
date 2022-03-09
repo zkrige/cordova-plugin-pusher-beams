@@ -7,8 +7,9 @@
 
   <engines>
       <!-- Cordova 6.4.0 and iOS 4.3.0 are required for Cocoapods support -->
-    <engine name="cordova" version=">=6.4.0" />
-    <engine name="cordova-ios" version=">=4.3.0" />
+    <!--<engine name="cordova" version=">=6.4.0" />-->
+   <!-- <engine name="cordova-ios" version=">=4.3.0" />-->
+        <engine name="cordova" version=">=6.0.0"/>
   </engines>
 
   <asset src="www/pusher.js" target="js/pusher.js"/>
@@ -47,7 +48,6 @@
                 <pod name="PushNotifications" spec="~> 1.2.0" swift-version="5.0"/>
             </pods>
         </podspec>
-
 
          <framework src="PushNotifications" type="podspec" spec="~> 1.2.0" swift-version="5.0" />
 
