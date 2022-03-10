@@ -44,11 +44,11 @@
                 <source url="https://github.com/CocoaPods/Specs.git"/>
             </config>
             <pods use-frameworks="true">
-                <pod name="PushNotifications" spec="~> 1.2.0" swift-version="5.0"/>
+                <pod name="PushNotifications" spec="~> 4.0.0" swift-version="5.0"/>
             </pods>
         </podspec>
 
-         <framework src="PushNotifications" type="podspec" spec="~> 1.2.0" swift-version="5.0" />
+         <framework src="PushNotifications" type="podspec" spec="~> 4.0.0" swift-version="5.0" />
 
   </platform>
 
