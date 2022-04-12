@@ -26,6 +26,7 @@
     </config-file>
 
     <source-file src="src/android/Pusher.java" target-dir="src/za/co/apextechnology/pusher/beams/"/>
+    <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
   </platform>
 
   <platform name="ios">
