@@ -26,7 +26,7 @@
     </config-file>
 
     <source-file src="src/android/PusherBeams.java" target-dir="java/com/centerhealth/plugin/pusher/"/>
-    <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+    <framework src="src/android/extras.gradle" custom="true" type="gradleReference" />
   </platform>
 
   <platform name="ios">
