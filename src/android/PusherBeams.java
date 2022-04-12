@@ -1,6 +1,7 @@
 package com.centerhealth.plugin.pusher;
 
 import android.util.Log;
+import android.content.Context;
 
 import com.pusher.pushnotifications.BeamsCallback;
 import com.pusher.pushnotifications.PushNotifications;
@@ -21,15 +22,13 @@ public class PusherBeams extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         Context context = this.cordova.getActivity().getApplicationContext();
-        Log.i("XXX", "initialize: ${context} ");
+        PushNotifications.start(context, "73f408d7-80a4-4986-a105-7be1f7081dbc");
+        PushNotifications.addDeviceInterest("debug-hello");
+        PushNotifications.addDeviceInterest("center-main");
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("XXX", "onStart: ");
-    }
-    
+
+
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
