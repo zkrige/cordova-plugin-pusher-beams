@@ -21,11 +21,11 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="PusherBeams">
-        <param name="android-package" value="za.co.apextechnology.pusher.beams.Pusher"/>
+        <param name="android-package" value="com.centerhealth.plugin.pusher.PusherBeams"/>
       </feature>
     </config-file>
 
-    <source-file src="src/android/Pusher.java" target-dir="src/za/co/apextechnology/pusher/beams/"/>
+    <source-file src="src/android/PusherBeams.java" target-dir="java/com/centerhealth/plugin/pusher/"/>
     <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
   </platform>
 

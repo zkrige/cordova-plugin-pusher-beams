@@ -1,4 +1,4 @@
-package za.co.apextechnology.pusher.beams;
+package com.centerhealth.plugin.pusher;
 
 import android.util.Log;
 
@@ -15,12 +15,12 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 
-public class Pusher extends CordovaPlugin {
+public class PusherBeams extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
-        if (action.equals("registerUserId")) {
+        if (action.equals("setUserId")) {
             String tokenUrl = data.getString(0);
             String userId = data.getString(1);
             if (userId == null) {
