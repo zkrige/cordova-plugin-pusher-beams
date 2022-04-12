@@ -18,6 +18,19 @@ import java.util.HashMap;
 public class PusherBeams extends CordovaPlugin {
 
     @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        Context context = this.cordova.getActivity().getApplicationContext();
+        Log.i("XXX", "initialize: ${context} ");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i("XXX", "onStart: ");
+    }
+    
+    @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         if (action.equals("setUserId")) {
