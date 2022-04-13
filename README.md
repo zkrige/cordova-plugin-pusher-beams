@@ -1,35 +1,20 @@
 # Cordova Pusher-Beams plugin
 
-A cordova plugin that registers a user id with Pusher-Beams
+A cordova plugin that exposes helpful methods for building beams flow on the web environment including some native methods from Pusher Beams SDK.
 
-You still need to do manual Pusher-Beams configuration and setup in your native app. This is a bridge to register with beams once you have a userid / authtoken in your JS app
+You still need to do manual Pusher-Beams web flow and web library for token. This is a bridge to register with beams once you have a userId / authtoken in your JS app.
 
 ## Using
 
-Create a new Cordova Project
-
-    $ cordova create beams com.example.beamsapp Beams
-    
 Install the plugin
 
     $ cd hello
-    $ cordova plugin add https://github.com/zkrige/cordova-plugin-pusher-beams.git
+    $ cordova plugin add https://github.com/CenterHealth/cordova-plugin-pusher-beams.git
     
-
-Edit `www/js/index.js` and add the following code when you have a userid and authtoken
-
-```js
-    this.Storage.get('access_token').then(token => {
-      this.Storage.get('userid').then(id => {
-        PusherBeams.registerUserId('https://your-auth-url.com', id, token);
-      });
-    });
-```
 
 Install iOS or Android platform
 
     cordova platform add ios
-    cordova platform add android
     
 Run the code
 
