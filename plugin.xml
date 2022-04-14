@@ -24,6 +24,14 @@
         <param name="android-package" value="com.centerhealth.plugin.pusher.PusherBeams"/>
       </feature>
     </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application"> 
+        <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" android:label="@string/activity_name" android:launchMode="singleTop" android:name="com.centerhealth.plugin.pusher.FcmActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:windowSoftInputMode="adjustResize" >
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </config-file>
 
     <source-file src="src/android/PusherBeams.java" target-dir="com/centerhealth/plugin/pusher/"/>
     <framework src="src/android/extras.gradle" custom="true" type="gradleReference" />

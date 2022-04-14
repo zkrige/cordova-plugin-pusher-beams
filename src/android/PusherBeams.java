@@ -27,7 +27,7 @@ public class PusherBeams extends CordovaPlugin {
                 String authToken = data.getString(2);
 
                 if (tokenUrl == null || userId == null || authToken == null) {
-                    callbackContext.error("Could not continue , missing some information");
+                    callbackContext.error("Please provide all the information required");
                 }
                 registerUserId(tokenUrl, userId, authToken, callbackContext);
                 return true;
