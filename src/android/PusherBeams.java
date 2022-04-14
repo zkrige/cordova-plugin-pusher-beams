@@ -17,6 +17,7 @@ import org.json.JSONException;
 import java.util.HashMap;
 
 public class PusherBeams extends CordovaPlugin {
+    JSONObject json = new JSONObject();
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
@@ -54,6 +55,8 @@ public class PusherBeams extends CordovaPlugin {
         } catch (Exception e) {
             callbackContext.error(e.toString());
             e.printStackTrace();
+        } finally {
+            return true;
         }
     }
 
@@ -94,4 +97,33 @@ public class PusherBeams extends CordovaPlugin {
         PushNotifications.addDeviceInterest("debug-hello");
 
     }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Log.d(TAG, "onNewIntent - starting");
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+            Set<String> keys = extras.keySet();
+            for (String key : keys) {
+                try {
+                    json.put(key, JSONObject.wrap(extras.get(key)));
+                } catch (JSONException e) {
+                    // Handle exception here
+                }
+            }
+            try {
+                JSONObject pusher = json.getJSONObject("pusher");
+                if (pusher != null) {
+                    DataHolder.getInstance().setData(pusher);
+                }
+            } catch (JSONException e) {
+                // Handle exception here
+            }
+        }
+
+    }
+
 }

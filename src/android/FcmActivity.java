@@ -1,8 +1,8 @@
-
 package com.centerhealth.plugin.pusher;
 
 import com.centerhealth.plugin.pusher.DataHolder;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
