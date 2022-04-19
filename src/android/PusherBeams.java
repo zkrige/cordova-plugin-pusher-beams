@@ -22,7 +22,7 @@ import java.util.Set;
 
 public class PusherBeams extends CordovaPlugin {
     private static final String TAG = "PUSHER";
-    JSONObject json = new JSONObject();
+    JSONObject json = null;
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
@@ -50,9 +50,8 @@ public class PusherBeams extends CordovaPlugin {
                 callbackContext.success("OK");
                 return true;
             } else if (action.equalsIgnoreCase("getNotification")) {
-                // TODO: implement
-                // PushNotifications.clearAllState();
-                // callbackContext.success("OK");
+                callbackContext.success(json);
+                json = null;
                 return true;
             } else {
                 return false;
@@ -111,6 +110,7 @@ public class PusherBeams extends CordovaPlugin {
         Bundle extras = intent.getExtras();
 
         if (extras != null) {
+            json = new JSONObject();
             Set<String> keys = extras.keySet();
             for (String key : keys) {
                 try {
@@ -118,12 +118,6 @@ public class PusherBeams extends CordovaPlugin {
                 } catch (JSONException e) {
                     // Handle exception here
                 }
-            }
-            try {
-                JSONObject pusher = json.getJSONObject("pusher");
-
-            } catch (JSONException e) {
-                // Handle exception here
             }
         }
 
