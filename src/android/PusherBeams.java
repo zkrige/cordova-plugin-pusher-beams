@@ -1,5 +1,7 @@
 package com.centerhealth.plugin.pusher;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.content.Context;
 
@@ -13,47 +15,56 @@ import com.pusher.pushnotifications.auth.BeamsTokenProvider;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class PusherBeams extends CordovaPlugin {
-
-    @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        super.initialize(cordova, webView);
-        Context context = this.cordova.getActivity().getApplicationContext();
-        PushNotifications.start(context, "73f408d7-80a4-4986-a105-7be1f7081dbc");
-        PushNotifications.addDeviceInterest("debug-hello");
-        PushNotifications.addDeviceInterest("center-main");
-    }
-
-
+    private static final String TAG = "PUSHER";
+    JSONObject json = null;
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+        try {
+            if (action.equals("setUserId")) {
+                String tokenUrl = data.getString(0);
+                String userId = data.getString(1);
+                String authToken = data.getString(2);
 
-        if (action.equals("setUserId")) {
-            String tokenUrl = data.getString(0);
-            String userId = data.getString(1);
-            if (userId == null) {
+                if (tokenUrl == null || userId == null || authToken == null) {
+                    callbackContext.error("Please provide all the information required");
+                }
+                registerUserId(tokenUrl, userId, authToken, callbackContext);
                 return true;
-            }
-            String authToken = data.getString(2);
-            if (authToken.equals("null")) {
+            } else if (action.equalsIgnoreCase("start")) {
+                String instanceId = data.getString(0);
+                if (instanceId == null) {
+                    callbackContext.error("Please provide InstanceID");
+                }
+                startPusher(instanceId);
+                callbackContext.success("OK");
                 return true;
+            } else if (action.equalsIgnoreCase("clear")) {
+                PushNotifications.clearAllState();
+                callbackContext.success("OK");
+                return true;
+            } else if (action.equalsIgnoreCase("getNotification")) {
+                callbackContext.success(json);
+                json = null;
+                return true;
+            } else {
+                return false;
             }
-            registerUserId(tokenUrl, userId, authToken);
-            callbackContext.success("");
+        } catch (Exception e) {
+            callbackContext.error(e.toString());
+            e.printStackTrace();
+        } finally {
             return true;
-        } else if (action.equalsIgnoreCase("clear")){
-            PushNotifications.clearAllState();
-            return true;
-        } else {
-            return false;
         }
     }
 
-    private void registerUserId(String tokenUrl, String userId, String authToken) {
+    private void registerUserId(String tokenUrl, String userId, String authToken, CallbackContext cb) {
         BeamsTokenProvider tokenProvider = new BeamsTokenProvider(tokenUrl,
                 () -> {
                     // Headers and URL query params your auth endpoint needs to
@@ -64,21 +75,52 @@ public class PusherBeams extends CordovaPlugin {
                     HashMap<String, String> queryParams = new HashMap<>();
                     return new AuthData(
                             headers,
-                            queryParams
-                    );
-                }
-        );
+                            queryParams);
+                });
 
-        PushNotifications.setUserId(userId, tokenProvider, new BeamsCallback<Void, PusherCallbackError>(){
+        PushNotifications.setUserId(userId, tokenProvider, new BeamsCallback<Void, PusherCallbackError>() {
             @Override
             public void onSuccess(Void... values) {
+                cb.success("OK");
                 Log.v("", "success");
             }
 
             @Override
             public void onFailure(PusherCallbackError error) {
-                Log.v("","fail");
+                cb.error("failed to set user id");
+                Log.v("", "fail");
             }
         });
     }
+
+    private void startPusher(String instanceId) {
+        Context context = this.cordova.getActivity().getApplicationContext();
+        PushNotifications.start(context, instanceId);
+
+        // Debug mode
+        PushNotifications.addDeviceInterest("debug-hello");
+
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Log.d(TAG, "onNewIntent - starting");
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+            json = new JSONObject();
+            Set<String> keys = extras.keySet();
+            for (String key : keys) {
+                try {
+                    json.put(key, JSONObject.wrap(extras.get(key)));
+                } catch (JSONException e) {
+                    // Handle exception here
+                }
+            }
+        }
+
+    }
+
 }
