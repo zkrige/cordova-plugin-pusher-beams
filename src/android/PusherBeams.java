@@ -1,5 +1,7 @@
 package com.centerhealth.plugin.pusher;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.content.Context;
 
@@ -13,10 +15,13 @@ import com.pusher.pushnotifications.auth.BeamsTokenProvider;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class PusherBeams extends CordovaPlugin {
+    private static final String TAG = "PUSHER";
     JSONObject json = new JSONObject();
 
     @Override
@@ -116,9 +121,7 @@ public class PusherBeams extends CordovaPlugin {
             }
             try {
                 JSONObject pusher = json.getJSONObject("pusher");
-                if (pusher != null) {
-                    DataHolder.getInstance().setData(pusher);
-                }
+
             } catch (JSONException e) {
                 // Handle exception here
             }
