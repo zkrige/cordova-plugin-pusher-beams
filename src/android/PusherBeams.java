@@ -96,10 +96,6 @@ public class PusherBeams extends CordovaPlugin {
     private void startPusher(String instanceId) {
         Context context = this.cordova.getActivity().getApplicationContext();
         PushNotifications.start(context, instanceId);
-
-        // Debug mode
-        PushNotifications.addDeviceInterest("debug-hello");
-
     }
 
     @Override
