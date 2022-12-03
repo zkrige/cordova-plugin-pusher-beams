@@ -39,6 +39,7 @@ public class PusherBeams extends CordovaPlugin {
                 return true;
             } else if (action.equalsIgnoreCase("start")) {
                 String instanceId = data.getString(0);
+
                 if (instanceId == null) {
                     callbackContext.error("Please provide InstanceID");
                 }
@@ -96,6 +97,9 @@ public class PusherBeams extends CordovaPlugin {
     private void startPusher(String instanceId) {
         Context context = this.cordova.getActivity().getApplicationContext();
         PushNotifications.start(context, instanceId);
+
+        Log.d(TAG, "STARTING PUSHER");
+
     }
 
     @Override
